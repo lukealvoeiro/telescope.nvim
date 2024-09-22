@@ -1333,12 +1333,11 @@ local git_icon_defaults = {
 function make_entry.gen_from_git_status(opts)
   opts = opts or {}
 
-  local col_width = ((opts.git_icons and opts.git_icons.added) and opts.git_icons.added:len() + 2) or 2
   local displayer = entry_display.create {
     separator = "",
     items = {
-      { width = col_width },
-      { width = col_width },
+      { width = opts.col_width },
+      { width = opts.col_width },
       { remaining = true },
     },
   }
@@ -1365,10 +1364,10 @@ function make_entry.gen_from_git_status(opts)
 
     local empty_space = " "
     return displayer {
-      { status_x.icon or empty_space, status_x.hl },
-      { status_y.icon or empty_space, status_y.hl },
+      { status_x.icon or empty_space, "TelescopeResultsStaged" },
+      { status_y.icon or empty_space, "TelescopeResultsUnstaged" },
       {
-        display_path,
+        " " .. display_path,
         function()
           return path_style
         end,
